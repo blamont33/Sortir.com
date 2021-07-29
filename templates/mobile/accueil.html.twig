@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mobile{% endblock %}
+
+{% block body %}
+    <a href="{{ path('mobile_accueil') }}"><img src="{{ asset('images/products/logo.png') }}"></a>
+    
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom de la sortie</th>
+        <th>Date de la sortie</th>
+        <th>Lieu</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for s in sorties %}
+            <tr>
+                <td><a href="{{ path('mobile_detail', {'id': s.id}) }}">{{ s.nom }}</a></td>
+                <td>{{ s.dateDebut | date("d/m/Y H:i") }}</td>
+                <td>{{ s.lieu.ville }}</td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion Campus{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="text-center" id="titre_campus"><h3>Gérer les campus</h3></div>
+    <div><h5>Filtrer les campus</h5></div>
+    <form id="form_campus">
+        <label for="nomCampus">Le nom contient :</label>
+        <input name="nomCampus" id="nomCampus" type="text">
+        <button id="nomCampus_bouton" type="button" class="btn btn-info">Rechercher</button>
+    </form>
+    <div class="row">
+        <div class="col" id="table_campus">
+            {% include "administrateur/campus_content.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ asset('js/gestionCampus.js') }}"></script>
+{% endblock %}

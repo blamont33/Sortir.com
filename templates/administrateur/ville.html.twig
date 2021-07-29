@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion villes{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="text-center" id="titre_ville"><h3>Gérer les villes</h3></div>
+    <div><h5>Filtrer les villes</h5></div>
+    <form id="form_ville">
+        <label for="nomVille">Le nom contient :</label>
+        <input name="nomVille" id="nomVille" type="text">
+        <button id="nomVille_bouton" type="button" class="btn btn-info">Rechercher</button>
+    </form>
+    <div class="row">
+        <div class="col" id="table_ville">
+            {% include "administrateur/ville_content.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ asset('js/gestionVille.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<div class="container">
+
+    <img src="">
+
+    {% block body %}
+        <a href="{{ path('main_accueil') }}"><img src="{{ asset('images/products/logo.png') }}"></a>
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+
+            <div class="container">
+                <div class="card card-container">
+                    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                    <h1 id="login_title">Connexion</h1>
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <div class="form-signin">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Adresse email" required
+                               autofocus value="{{ last_username }}" name="email">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe"
+                               name="password" required>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <div id="remember" class="checkbox">
+                            <label>
+                                <input type="checkbox" value="remember-me" name="_remember_me"> Se souvenir de moi
+                            </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Se connecter</button>
+                    </div><!-- /form -->
+                    <a href="{{ path('app_forgot_password_request') }}" class="forgot-password">
+                        Mot de passe oublié?
+                    </a>
+                </div><!-- /card-container -->
+            </div><!-- /container -->
+
+
+            {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+            #}
+
+        </form>
+    {% endblock %}
+</div>

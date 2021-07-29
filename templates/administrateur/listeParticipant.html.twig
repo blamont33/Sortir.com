@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau participant{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div id="titre_liste" class="text-center"><h3>Liste des participants</h3></div>
+    <div id="table_liste">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom :</th>
+                <th>Prénom :</th>
+                <th>Actif :</th>
+                <th>Action :</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for p in participant %}
+                <tr>
+                    <td>{{ p.nom | upper }}</td>
+                    <td> <a href="{{ path('profil_autreProfil', {'id': p.id}) }}">{{ p.prenom }}</a></td>
+                    <td>
+                        {% if p.actif == true %}
+                            Actif
+                        {% else %}
+                            Inactif
+                        {% endif %}
+                    </td>
+                    <td><a href="{{ path('administrateur_supprimer', {'id': p.id}) }}">Supprimer</a> -
+                        {% if p.actif==true %}
+                        <a href="{{ path('administrateur_inactif', {'id': p.id}) }}">Rendre inactif</a></td>
+                    {% else %}
+                        <a href="{{ path('administrateur_inactif', {'id': p.id}) }}">Rendre actif</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

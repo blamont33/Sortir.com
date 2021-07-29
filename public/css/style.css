@@ -1,0 +1,315 @@
+/*
+ * Specific styles of signin component
+ */
+/*
+ * General styles
+ */
+#login_title{
+    text-align: center;
+}
+
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/*
+ * Form styles
+ */
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+.forgot-password {
+    color: rgb(104, 145, 162);
+}
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus{
+    color: rgb(12, 97, 33);
+}
+
+/*----------------------------------------------------------*/
+
+#info_accueil{
+    margin-top: 15px;
+}
+
+#test{
+    width: 200px;
+}
+
+#main_table{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.container{
+    max-width: 1200px;
+}
+.form-group{
+
+}
+.form-control{
+    width: 300px;
+}
+.col-form-label{
+    min-width: 170px;
+}
+.col-sm-10{
+    max-width: 200px;
+}
+#profil{
+    margin-top: 20px;
+}
+
+#profil_titre{
+    margin: 40px;
+}
+#bouton_profil{
+    margin: 30px;
+    margin-left: 200px;
+}
+#profil_categorie{
+   margin-left: 50px;
+}
+#but_sup{
+    margin-left: 28px;
+}
+#boutons_sortie{
+    margin-left: 320px;
+    margin-top: 30px;
+}
+.col-form-label{
+
+}
+#avatar{
+    width: 200px;
+}
+/*
+.row{
+    border: black 1px solid;
+}
+.col, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8{
+    border: black 1px solid;
+}
+ */
+.ecart_texte_profil{
+    margin: 15px;
+}
+.ecart_texte_afficher{
+    margin-top: 10px;
+}
+#info_profil{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#pseudo_profil{
+    margin: 40px;
+}
+#envoyer{
+    width: 50%;
+    height: 50%;
+    margin-top: 35px;
+}
+#creer_sortie{
+    margin-top: 20px;
+}
+#debut{
+    max-width: 200px;
+}
+.form_accueil{
+    margin:5px;
+}
+#titre_afficher{
+    margin: 30px;
+}
+#cat1_afficher{
+    margin-left: 180px;
+}
+#cat2_afficher{
+    margin-left: 80px;
+}
+#table_participant{
+    margin-top: 30px;
+}
+#tableau_afficher{
+    max-width: 500px;
+    max-height: 300px;
+    overflow: scroll;
+}
+#content{
+    overflow: scroll;
+    max-height: 500px;
+}
+#titre_annule{
+    margin-top: 30px;
+    color: #B0413E;
+}
+#cat_annuler{
+    margin-left: 400px;
+}
+#annuler_sortie{
+    margin: 30px;
+}
+#bouton_annuler{
+    margin-left:470px;
+    margin-left:470px;
+}
+#liste_inscrit{
+    margin-top: 20px;
+}
+.custom-file-input{
+    width: 50%;
+}
+#titre_liste{
+    margin: 30px;
+}
+#table_liste{
+    max-height: 700px;
+    overflow: scroll;
+
+}
+#plus{
+    margin-top: 58px;
+}
+#img_plus{
+    width: 50%;
+}
+#titre_ajouterLieu{
+    margin: 30px;
+}
+#form_ajouterLieu{
+    margin-left: 50px;
+}
+#titre_creerSortie, #titre_modifier{
+    margin: 30px;
+}
+#plus2{
+    margin-top: 17px;
+}
+#titre_ville, #titre_campus, #titre_import{
+    margin: 30px;
+}
+#table_ville, #table_campus{
+    max-width: 700px;
+    max-height: 400px;
+    overflow: scroll;
+}
+#nomVille_bouton, #nomCampus_bouton{
+    margin-left: 50px;
+}
+#form_ville, #form_campus{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#bouton_generer{
+    margin-top: 20px;
+}
+#titre_listeP{
+    margin-top: 20px;
+}
+#bouton_ann{
+    margin-left: 28px;
+}
+

@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Ville</th>
+        <th>Code postal</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for v in ville %}
+        <tr>
+            <td>{{ v.nomVille }}</td>
+            <td>{{ v.codePostal }}</td>
+            <td><a  href="{{ path('administrateur_modifier_ville', {'id': v.id}) }}">Modifier</a> - <a onclick="return confirm('ATTENTION :Cette action supprimera toutes les informations liées à cette ville (lieux, sorties, etc..., voulez-vous continuer ?')" href="{{ path('administrateur_supprimer_ville', {'id': v.id}) }}">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+
+    {{ form_start(villeForm) }}
+    <tr>
+        <td>{{ form_row(villeForm.nomVille, {'label': false}) }}</td>
+        <td>{{ form_row(villeForm.codePostal, {'label': false}) }}</td>
+        <td> <input type="submit" value="Ajouter"></td>
+    </tr>
+    {{ form_end(villeForm) }}
+    </tbody>
+</table>

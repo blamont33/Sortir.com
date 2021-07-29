@@ -1,0 +1,6 @@
+email,password,pseudo,nom,prenom,actif,administrateur,campus,telephone,imageName
+usercsv1@mail.com,password,pseudocsv1,nomcsv1,prenomcsv1,1,0,1,0552158759,profil_vide.jpg
+usercsv2@mail.com,password,pseudocsv2,nomcsv2,prenomcsv2,1,0,2,0552158759,profil_vide.jpg
+usercsv3@mail.com,password,pseudocsv3,nomcsv3,prenomcsv3,1,0,3,0552158759,profil_vide.jpg
+usercsv4@mail.com,password,pseudocsv4,nomcsv4,prenomcsv4,1,0,4,0552158759,profil_vide.jpg
+usercsv5@mail.com,password,pseudocsv5,nomcsv5,prenomcsv5,1,0,2,0552158759,profil_vide.jpg

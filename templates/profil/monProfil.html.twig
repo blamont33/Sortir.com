@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% form_theme userForm 'bootstrap_4_horizontal_layout.html.twig' %}
+
+
+        <div class="text-center" id="profil_titre"><h3>Mon profil</h3></div>
+        <div class="row" id="profil">
+            <div class="col-3">
+                {% set image = participant.imageName %}
+                <img class="img-fluid" id="avatar" src="{{ asset('images/products/'~image) }}">
+
+            </div>
+            <div class="col-9 form-group">
+                {{ form_start(userForm) }}
+                {{ form_widget(userForm) }}
+                <div id="bouton_profil">
+                    <button type="submit" class="btn btn-info">Enregistrer</button>
+                    <a href="{{ path('main_accueil') }}" class="btn btn-info" role="button">Annuler</a>
+                </div>
+                {{ form_end(userForm) }}
+            </div>
+        </div>
+
+{% endblock %}

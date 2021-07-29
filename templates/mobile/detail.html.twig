@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mobile{% endblock %}
+
+{% block body %}
+    <a href="{{ path('mobile_accueil') }}"><img src="{{ asset('images/products/logo.png') }}"></a>
+<div class="row">
+    <div class="col">
+        <div><b>Nom : </b></div>
+    </div>
+    <div class="col">
+        <div>{{ sorties.nom }}</div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col">
+            <div><b>Date et heure : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.dateDebut | date("d/m/Y H:i") }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Ville : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.ville }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Lieu : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.nomLieu }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Rue : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.rue }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Code Postal : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.ville.codePostal }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Latitude : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.latitude }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Longitude : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.lieu.longitude }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Clôture : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.dateCloture | date("d/m/Y") }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Nombre de places : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.nbInscriptionMax }}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Durée : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.duree }} minutes</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div><b>Description et infos : </b></div>
+        </div>
+        <div class="col">
+            <div>{{ sorties.descriptionInfo }}</div>
+        </div>
+    </div>
+
+
+<div class="row">
+    <div class="col">
+
+       <h5 id="liste_inscrit">Liste des inscrits :</h5>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Ville</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in sorties.participants %}
+                <tr>
+                    <td>{{ p.prenom }} {{ p.nom | upper}}</td>
+                    <td>{{ sorties.lieu.ville | upper}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+{% endblock %}

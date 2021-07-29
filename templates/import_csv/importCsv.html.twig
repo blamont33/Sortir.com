@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Importer un fichier CSV{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    <h3 class="text-center" id="titre_import">Importer un fichier CSV</h3>
+
+    <p><b>Indication</b> : Veuillez sélectionner un fichier au format CSV puis cliquez sur "Générer" afin d'importer vos utilisateurs en base de données.</p>
+{{ form_start(fileForm) }}
+{{ form_widget(fileForm) }}
+    <input id="bouton_generer" type="submit" class="btn btn-info" value="Générer">
+{{ form_end(fileForm) }}
+{% endblock %}

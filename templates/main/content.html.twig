@@ -1,0 +1,61 @@
+{% set id =  app.user.id | trans %}
+ {% set now = "now"|date("m/d/Y") %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom de la sortie</th>
+        <th>Date de la sortie</th>
+        <th>Clôture</th>
+        <th>Inscrits / places</th>
+        <th>Etat</th>
+        <th>Inscrit</th>
+        <th>Organisateur</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for s in sortie %}
+        {% if date(s.dateDebut) > date('-30days') and (s.etat.libelle != "En création" or (s.etat.libelle == "En création" and s.organisateur.id == app.user.id)) %}
+            <tr>
+                <td>{{ s.nom }}</td>
+                <td>{{ s.dateDebut | date("d/m/Y H:i") }}</td>
+                <td>{{ s.dateCloture | date("d/m/Y") }}</td>
+                <td>{{ s.participants | length }}/{{ s.nbInscriptionMax }}</td>
+                <td>{{ s.etat.libelle }}</td>
+                <td>{% if id in s.participants.values %}X{% endif %}</td>
+                <td>
+                    {% if s.organisateur.id == app.user.id %}
+                        <a href="{{ path('profil_monProfil') }}">{{ s.organisateur.pseudo }}</a>
+                    {% else %}
+                        <a href="{{ path('profil_autreProfil', {'id': s.organisateur.id}) }}">{{ s.organisateur.pseudo }}</a>
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% if s.etat.libelle == "En création" %}
+                        <a href="{{ path('update_sortie', {'id': s.id}) }}">Modifier</a>
+                        <a href="{{ path('publier', {'id': s.id}) }}">- Publier</a>
+                    {% endif %}
+                    {% if s.etat.libelle != "En création" %}
+                        <a href="{{ path('afficher', {'id': s.id}) }}">Afficher</a>
+                    {% endif %}
+                    {% if(s.etat.libelle == "Ouverte" and s.dateCloture > now and id not in s.participants.values) %}
+                        <a href="{{ path('incrire', {'id': s.id}) }}">- S'inscrire</a>
+                    {% endif %}
+                    {% if id in s.participants.values and s.dateDebut > now %}
+                        <a href="{{ path('desister', {'id': s.id}) }}">- Se désister</a>
+                    {% endif %}
+                    {% if s.organisateur.id == app.user.id and s.etat.libelle != "Annulée" and s.etat.libelle != "En création" or (app.user.roles[0]=='ROLE_ADMIN' and s.etat.libelle != "Annulée") %}
+                        <a href="{{ path('annuler', {'id': s.id}) }}">- Annuler</a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+
+
+    </tbody>
+</table>

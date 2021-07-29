@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Créer une sortie
+
+{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col">
+            <div id="titre_creerSortie">
+            {% if sortie.etat != null and sortie.etat.libelle == "En création" %}
+                <h2 class="text-center">Modifier une sortie</h2>
+            {% else %}
+                <h2 class="text-center">Créer une sortie</h2>
+            {% endif %}
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-5">
+            {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_row(form.nom) }}
+            {{ form_row(form.dateDebut) }}
+            {{ form_row(form.dateCloture) }}
+            {{ form_row(form.nbInscriptionMax) }}
+            {{ form_row(form.duree) }}
+            {{ form_row(form.descriptionInfo) }}
+        </div>
+        <div class="col-5">
+            <div>
+
+                {% set nomCampus = campus[0].nomCampus %}
+                {{ form_row(form.campus, {'attr':{'value': nomCampus }}) }}
+                {{ form_row(form.ville) }}
+                <div>
+                    {{ form_row(form.lieu) }}
+                </div>
+                {{ form_row(form.codePostal) }}
+                {{ form_row(form.rue) }}
+                {{ form_row(form.latitude) }}
+                {{ form_row(form.longitude) }}
+
+            </div>
+        </div>
+        <div class="col-1" id="plus">
+            <div>
+            <a href="{{ path('ajouter_ville') }}"><img id="img_plus" src="{{ asset('images/products/plus.png') }}" ></a>
+            </div>
+            <div id="plus2">
+                <a  href="{{ path('ajouter_lieu') }}"><img id="img_plus" src="{{ asset('images/products/plus.png') }}" ></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" id="boutons_sortie">
+        <div class="col form-inline">
+            {{ form_row(form.enregistrer) }}
+            {{ form_row(form.publier) }}
+            {{ form_end(form) }}
+            <a href="{{ path('main_accueil') }}" class="btn btn-primary" role="button">Annuler</a>
+            {% if sortie.etat != null and sortie.etat.libelle == "En création" %}
+                <a href="{{ path('supprimer_sortie', {'id': sortie.id}) }}" class="btn btn-primary" role="button"
+                   id="but_sup">Supprimer</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block javascript %}
+<script src="{{ asset('js/select.js') }}"></script>
+{% endblock %}

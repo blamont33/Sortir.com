@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col text-center">
+            <h3 id="annuler_sortie">Annuler une sortie</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div id="cat_annuler">
+                <div class="ecart_texte_afficher">Nom de la sortie :</div>
+                <div class="ecart_texte_afficher">Date de la sortie :</div>
+                <div class="ecart_texte_afficher">Campus :</div>
+                <div class="ecart_texte_afficher">Lieu :</div>
+                <div class="ecart_texte_afficher">Motif :</div>
+            </div>
+        </div>
+        <div class="col">
+
+            <div class="ecart_texte_afficher">{{ sortie.nom }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.dateDebut | date('d/m/Y') }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.campus | upper }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu.rue }} {{ sortie.lieu.ville.codePostal }} {{ sortie.lieu.ville.nomVille }}</div>
+            <div class="ecart_texte_afficher">
+                {{ form_start(annulerForm) }}
+                {{ form_row(annulerForm.motif) }}
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col text-center">
+            <div class="form-inline" id="bouton_annuler">
+                {{ form_row(annulerForm.enregistrer) }}
+                <a href="{{ path('main_accueil') }}" class="btn btn-info" role="button">Annuler</a>
+            </div>
+            {{ form_end(annulerForm) }}
+        </div>
+    </div>
+
+{% endblock %}

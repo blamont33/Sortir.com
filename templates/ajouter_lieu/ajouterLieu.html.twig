@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% form_theme lieuForm 'bootstrap_4_horizontal_layout.html.twig' %}
+
+    <h3 id="titre_ajouterLieu" class="text-center">Ajouter un lieu</h3>
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div id="form_ajouterLieu" class="col-5">
+            {{ form_start(lieuForm) }}
+            {{ form_widget(lieuForm) }}
+            <a href="{{ path('create_sortie') }}" class="btn btn-info float-right " role="button">Annuler</a>
+            <input type="submit" class="btn btn-info float-right mr-sm-2" value="Enregistrer">
+            {{ form_end(lieuForm) }}
+        </div>
+        <div class="col-5">
+        </div>
+    </div>
+
+
+{% endblock %}

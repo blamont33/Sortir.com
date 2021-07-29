@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a href="{{ path('main_accueil') }}"><img src="{{ asset('images/products/logo.png') }}"></a>
+
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto">
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Administrateur
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ path('administrateur_nouveau') }}">Nouveau participant</a>
+                    <a class="dropdown-item" href="{{ path('administrateur_listeParticipant') }}">Liste participants</a>
+                    <a class="dropdown-item" href="{{ path('importCsv') }}">Intégration CSV</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('administrateur_ville') }}">Villes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('administrateur_campus') }}">Campus</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="{{ path('main_accueil') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('profil_monProfil') }}">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+            </li>
+        {% elseif is_granted('ROLE_USER') %}
+            <li class="nav-item">
+                <a class="nav-link " href="{{ path('main_accueil') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('profil_monProfil', {'id': app.user.id}) }}">Mon profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login') }}">Se connecter</a>
+            </li>
+        {% endif %}
+    </ul>
+
+</nav>

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau participant{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% form_theme participantForm 'bootstrap_4_horizontal_layout.html.twig' %}
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+<div class="text-center" id="profil_titre"><h3>Nouveau participant</h3></div>
+<div class="row" id="profil justify-content-center">
+
+    <div class="col-3"></div>
+    <div class="col-6 form-group" id="profil2">
+        <div>
+        {{ form_start(participantForm) }}
+        {{ form_widget(participantForm) }}
+        <div id="bouton_profil">
+            <button type="submit" class="btn btn-info">Enregistrer</button>
+            <a href="{{ path('main_accueil') }}" class="btn btn-info" role="button">Annuler</a>
+        </div>
+        {{ form_end(participantForm) }}
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+{% endblock %}

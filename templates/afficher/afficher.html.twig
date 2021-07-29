@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Afficher{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col text-center">
+            <h3 id="titre_afficher">Afficher une sortie</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div id="cat1_afficher">
+                <div class="ecart_texte_afficher">Nom de la sortie :</div>
+                <div class="ecart_texte_afficher">Date et heure de la sortie :</div>
+                <div class="ecart_texte_afficher">Date limite d'inscription :</div>
+                <div class="ecart_texte_afficher">Nombre de places :</div>
+                <div class="ecart_texte_afficher">Durée :</div>
+                <div class="ecart_texte_afficher">Description et infos :</div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="ecart_texte_afficher">{{ sortie.nom }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.dateDebut | date ("d/m/Y H:i") }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.dateCloture | date ("d/m/Y") }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.nbInscriptionMax }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.duree }} minutes</div>
+            <div class="ecart_texte_afficher">{{ sortie.descriptionInfo }}</div>
+        </div>
+        <div class="col-2">
+            <div id="cat2_afficher">
+            <div class="ecart_texte_afficher">Campus :</div>
+            <div class="ecart_texte_afficher">Lieu :</div>
+            <div class="ecart_texte_afficher">Rue :</div>
+            <div class="ecart_texte_afficher">Code postal:</div>
+            <div class="ecart_texte_afficher">Latitude :</div>
+            <div class="ecart_texte_afficher">Longitude :</div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="ecart_texte_afficher">{{ sortie.campus }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu.rue }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu.ville.codePostal }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu.latitude }}</div>
+            <div class="ecart_texte_afficher">{{ sortie.lieu.longitude }}</div>
+        </div>
+    </div>
+
+    {% if sortie.etat.libelle == "Annulée" %}
+        <div class="row">
+            <div class="col">
+                <div>
+                    <h5 class="text-center" id="titre_annule">Cette sortie a été annulée pour le motif suivant :</h5>
+                </div>
+                <div class="text-center">
+                    {{ sortie.motif }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <h5 id="titre_listeP">Liste des participants inscrits :</h5>
+    <div class="row" id="table_participant">
+        <div class="col" id="tableau_afficher">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for p in sortie.participants %}
+                    <tr>
+                        <td>
+                            {% if p.id == app.user.id %}
+                                <a href="{{ path('profil_monProfil') }}">{{ p.pseudo }}</a>
+                            {% else %}
+                                <a href="{{ path('profil_autreProfil', {'id': p.id}) }}">{{ p.pseudo }}</a>
+                            {% endif %}
+                        </td>
+                        <td>{{ p.nom }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}

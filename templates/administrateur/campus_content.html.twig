@@ -1,0 +1,24 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Campus</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in campus %}
+        <tr>
+            <td>{{ c.nomCampus }}</td>
+            <td><a href="{{ path('administrateur_modifier_campus', {'id': c.id}) }}">Modifier</a> -
+                <a onclick="return confirm('ATTENTION :Cette action supprimera toutes les informations liées à ce campus (participants, sorties, etc..., voulez-vous continuer ?')" href="{{ path('administrateur_supprimer_campus', {'id': c.id}) }}">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+
+    {{ form_start(campusForm) }}
+    <tr>
+        <td>{{ form_row(campusForm.nomCampus, {'label': false}) }}</td>
+        <td> <input type="submit" value="Ajouter"></td>
+    </tr>
+    {{ form_end(campusForm) }}
+    </tbody>
+</table>

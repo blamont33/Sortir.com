@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% set queryParams = app.request.query.all %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block header %}
+{% include 'main/Navbar.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row text-right" id="info_accueil">
+        <div class="col">
+            <div>
+                Date du jour : <b>{{ "now"|date("d/m/Y") }}</b>
+            </div>
+            <div>
+                Participant : <b>{% if is_granted('IS_AUTHENTICATED_FULLY') %} {{ app.user.pseudo }} {% endif %}</b>
+            </div>
+        </div>
+
+    </div>
+
+    <form id="filters">
+        <div class="row" id="main_table">
+
+            <div class="col-lg-5 col-sm-6">
+                <div class="form-inline">
+                    <label for="campus">Campus</label>
+                    <select class="form-control form_accueil" type name="campus">
+                        <option disabled selected value>Sélectionnez un campus</option>
+                        {% for c in campus %}
+                            {# On verifie si le campus est dans les paramètres #}
+                            {% if queryParams is not empty and queryParams.campus is not empty %}
+                                {% set selected = (c.id in queryParams.campus)? "selected" : "" %}
+                            {% else %}
+                                {% set selected = "" %}
+                            {% endif %}
+                            <option {{ selected }} value="{{ c.id }}">{{ c.nomCampus }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-inline">
+                    <label for="contient">Le nom de la sortie contient</label>
+                    <input class="form-control form_accueil" name="contient" id="contient" type="text">
+                </div>
+                <div class="form-inline">
+                    <label for="debut">Entre</label>
+                    <input class="form-control form_accueil" name="debut" id="debut" type="datetime-local">
+                    <label for="fin">Et</label>
+                    <input class="form-control form_accueil" name="fin" id="fin" type="date">
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div>
+                    <input name="organisateur" value="{{ app.user.id }}" id="organisateur" type="checkbox">
+                    <label for="organisateur">Sorties dont je suis l'organisateur/trice</label>
+                </div>
+                <div>
+                    <input name="inscrit" value="{{ app.user.id }}" id="inscrit" type="checkbox">
+                    <label for="inscrit">Sorties auxquelles je suis inscrit/e</label>
+                </div>
+                <div>
+                    <input name="pas_inscrit" value="{{ app.user.id }}" id="pas_inscrit" type="checkbox">
+                    <label for="pas_inscrit">Sorties auxquelles je ne suis pas inscrit/e</label>
+                </div>
+                <div>
+                    <input name="passe" value="{{ "now" | date("Y/m/d") }}" id="passe" type="checkbox">
+                    <label for="passe">Sorties passées</label>
+                </div>
+            </div>
+            <div class="col-lg-3 text-center">
+                <button id="envoyer" type="button" class="btn btn-info">Rechercher</button>
+            </div>
+
+        </div>
+    </form>
+
+<div class="row">
+    <div class="col " id="content">
+        {% include "main/content.html.twig" %}
+    </div>
+</div>
+<div class="row" id="creer_sortie">
+    <div class="col">
+        <a href="{{ path('create_sortie') }}" class="btn btn-info" role="button">Créer une sortie</a>
+    </div>
+</div>
+
+
+
+{% endblock %}
+{% block javascript %}
+<script src="{{ asset('js/filters.js') }}"></script>
+{% endblock %}
+

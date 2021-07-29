@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Créer une sortie
+
+{% endblock %}
+{% block header %}
+    {% include 'main/Navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    <div class="row">
+        <div class="col">
+            <div id="titre_modifier">
+                <h3 class="text-center">Modifier une sortie</h3>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-1"></div>
+    <div class="col-5">
+        {{ form_start(form) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.dateDebut) }}
+        {{ form_row(form.dateCloture) }}
+        {{ form_row(form.nbInscriptionMax) }}
+        {{ form_row(form.duree) }}
+        {{ form_row(form.descriptionInfo) }}
+    </div>
+    <div class="col-5">
+        {% set nomCampus = campus[0].nomCampus %}
+        {{ form_row(form.campus, {'attr':{'value': nomCampus }}) }}
+        {{ form_row(form.ville)}}
+        {{ form_row(form.lieu) }}
+        {{ form_row(form.rue, {'attr': {'value': sortie.lieu.rue}}) }}
+        {{ form_row(form.codePostal, {'attr': {'value': sortie.lieu.ville.codePostal}}) }}
+        {{ form_row(form.latitude, {'attr': {'value': sortie.lieu.latitude}}) }}
+        {{ form_row(form.longitude, {'attr': {'value': sortie.lieu.longitude}}) }}
+    </div>
+    <div class="col-1"></div>
+    <div class="row" id="boutons_sortie">
+        <div class="col form-inline">
+            {{ form_row(form.enregistrer) }}
+            {{ form_row(form.publier) }}
+            {{ form_end(form) }}
+            <a href="{{ path('supprimer_sortie', {'id': sortie.id}) }}" class="btn btn-primary" role="button">Supprimer</a>
+            <a id="bouton_ann" href="{{ path('main_accueil') }}" class="btn btn-primary" role="button">Annuler</a>
+        </div>
+
+    </div>
+
+    {% endblock %}
+    {% block javascript %}
+    <script src="{{ asset('js/select.js') }}"></script>
+{% endblock %}
